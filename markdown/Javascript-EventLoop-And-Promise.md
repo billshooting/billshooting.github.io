@@ -1,5 +1,5 @@
 ﻿# Javascript的事件模型和Promise实现
-
+`@bill_shooting` `2018-04-20` `字数 2291` [`Follow me on`<i class="icon-github"></i>][1]
 标签（空格分隔）： javascript
 
 ---
@@ -16,7 +16,7 @@ while (eventQueue.waitForMessage()) {
 }
 ```
 有了运行栈和事件队列之后，我们的Javascript运行时已经初具雏形。不过Javascript中的变量都是对象，它们的大小通常很大，可不是一个小小的栈能放下的，如果我们熟悉C++，就会知道一般在C++中我们只在栈中存储基本类型（int, bool等）和指针，而指针所指的位置是内存堆中的一个地址，这也是JS的对象的存储地点。下面这张图可以形象地解释一下JS运行时的模型。
-![JS的事件循环模型][1]
+![JS的事件循环模型][2]
 
 **2. 事件循环模型的优点和缺点**
 **先说优点**。除了实现上的简单，Javascript的最大优点就是**完全异步，永不阻塞**。这句话可能有点令人迷糊，一个单线程的运行时怎么完全异步，永不阻塞？实际上虽然JS运行时单线程，但是浏览器是个多进程多线程的环境，这一个点在后端也一样，虽然Node是个单线程JS运行时，但是后端还有其他进程和线程配合Node一起完成响应操作。
@@ -52,4 +52,7 @@ getUrlAsync('http://exaple.com/text/11111')
 7. 传入`error => console.log(error)`来具体化第5部中的委托，**此时当前的运行栈就退出了，运行时将处理其他事件**。
 在某一个时刻，浏览器控制的open方法返回，它会在JS运行时的事件队列中添加一个事件，比如`onload`
 8. JS运行时循环到`onload`事件，并找到它的关联处理函数，并运行这个函数。
-  [1]: https://developer.mozilla.org/files/4617/default.svg
+
+
+  [1]: https://github.com/billshooting
+  [2]: https://developer.mozilla.org/files/4617/default.svg
